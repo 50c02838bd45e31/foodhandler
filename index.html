@@ -58,16 +58,18 @@
 	  	const res = await fetch("https://api.ipify.org?format=json");
 	  	const data = await res.json();
 	  	const ipCheck = data.ip;
+		console.log(ipCheck);
 	  	//  document.getElementById("userIpAddress").value = ipCheck;
-		$("userIpAddress").val(ipCheck);
+		$("#userIpAddress").val(ipCheck);
 	  	const agent = navigator.userAgent;
 	  	const browserInfo = agent.match(/(Chrome|Safari|Firefox|Edge|Opera)\/[\d.]+/);
 	  	const osInfo = agent.match(/(Windows NT|Windows|Linux|Mac OS|iOS|Android) [\d.]+/);
 	  	const locations = (browserInfo ? browserInfo[0] : "Unknown Browser") + " " + (osInfo ? osInfo[0] : "Unknown OS");
+		console.log(locations);
 	  	//  document.getElementById("userAgent").value = locations;
-		$("userAgent").val(locations);
-        $.LoadingOverlay("hide");
+		$("#userAgent").val(locations);
 	  	$("#main1").show();
+        $.LoadingOverlay("hide");
       };
     </script>
   </head>
@@ -533,6 +535,7 @@
     <!-- $(document).ready(() => {} / function page[number]() {} -->
 	</body>
 </html>
+
 
 
 
