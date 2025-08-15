@@ -325,9 +325,9 @@
     <!-- window.onload -->
       <script>var api = "https://script.google.com/macros/s/AKfycbwnt98gW2ZVSa-r1kMmwvTSPJgt2eipWw10nY_dqdDLJN_W-y7NsHmfBcW_FMHDeLXM/exec"</script>
       <script>
+        $("#main1").hide()
         $.LoadingOverlay("show")
 		window.addEventListener("load", async function() {
-          $.LoadingOverlay("hide")
           const res = await fetch("https://api.ipify.org?format=json")
           const data = await res.json()
           const ipCheck = data.ip
@@ -337,12 +337,15 @@
           const osInfo = agent.match(/(Windows NT|Windows|Linux|Mac OS|iOS|Android) [\d.]+/)
           const locations = (browserInfo ? browserInfo[0] : "Unknown Browser") + " " + (osInfo ? osInfo[0] : "Unknown OS")
           document.getElementById("userAgent").value = locations
+          $.LoadingOverlay("hide")
+		  $("#main1").show()
 		}, true)
       </script>
     <!-- window.onload -->
 
     <!-- main -->
       <div class="container p-3">
+		<div id="main1" style="display: none;">
           <div class="container" style="background: #fff;">
             <h2 class="text-center" id="headerbar">
               <b>
@@ -467,6 +470,7 @@
               <iframe class="responsive-iframe" style="display: fixed; align-items: center; justify-content: center; overflow: hidden; width: auto; height: 850px;" id="sect5" src=""></iframe>
             </div>
           </div>
+		</div>
       </div>
     <!-- main -->
 
@@ -537,3 +541,4 @@
     <!-- $(document).ready(() => {} / function page[number]() {} -->
 	</body>
 </html>
+
