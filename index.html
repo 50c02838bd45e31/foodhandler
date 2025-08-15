@@ -50,15 +50,24 @@
     <script src=".\libs\buttons\buttons.print.min.js"></script>
     
     <script>
+	  $("#main1").hide();
       $.LoadingOverlay("show");
-      var forms = document.querySelectorAll("form");
-      window.onload = () => {
+      window.onload = async () => {
+        var forms = document.querySelectorAll("form");
+        for (var i = 0; i < forms.length; i++) { forms[i].addEventListener("submit", event => { event.preventDefault(); }); };
+	  	const res = await fetch("https://api.ipify.org?format=json");
+	  	const data = await res.json();
+	  	const ipCheck = data.ip;
+	  	//  document.getElementById("userIpAddress").value = ipCheck;
+		$("userIpAddress").val(ipCheck);
+	  	const agent = navigator.userAgent;
+	  	const browserInfo = agent.match(/(Chrome|Safari|Firefox|Edge|Opera)\/[\d.]+/);
+	  	const osInfo = agent.match(/(Windows NT|Windows|Linux|Mac OS|iOS|Android) [\d.]+/);
+	  	const locations = (browserInfo ? browserInfo[0] : "Unknown Browser") + " " + (osInfo ? osInfo[0] : "Unknown OS");
+	  	//  document.getElementById("userAgent").value = locations;
+		$("userAgent").val(locations);
         $.LoadingOverlay("hide");
-        for (var i = 0; i < forms.length; i++) {
-          forms[i].addEventListener("submit", event => {
-            event.preventDefault();
-          });
-        };
+	  	$("#main1").show();
       };
     </script>
   </head>
@@ -324,23 +333,6 @@
 
     <!-- window.onload -->
       <script>var api = "https://script.google.com/macros/s/AKfycbwnt98gW2ZVSa-r1kMmwvTSPJgt2eipWw10nY_dqdDLJN_W-y7NsHmfBcW_FMHDeLXM/exec"</script>
-      <script>
-        $("#main1").hide()
-        $.LoadingOverlay("show")
-		window.addEventListener("load", async function() {
-          const res = await fetch("https://api.ipify.org?format=json")
-          const data = await res.json()
-          const ipCheck = data.ip
-          document.getElementById("userIpAddress").value = ipCheck
-          const agent = navigator.userAgent
-          const browserInfo = agent.match(/(Chrome|Safari|Firefox|Edge|Opera)\/[\d.]+/)
-          const osInfo = agent.match(/(Windows NT|Windows|Linux|Mac OS|iOS|Android) [\d.]+/)
-          const locations = (browserInfo ? browserInfo[0] : "Unknown Browser") + " " + (osInfo ? osInfo[0] : "Unknown OS")
-          document.getElementById("userAgent").value = locations
-		  $("#main1").show()
-          $.LoadingOverlay("hide")
-		}, true)
-      </script>
     <!-- window.onload -->
 
     <!-- main -->
@@ -541,5 +533,6 @@
     <!-- $(document).ready(() => {} / function page[number]() {} -->
 	</body>
 </html>
+
 
 
