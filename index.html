@@ -337,8 +337,8 @@
           const osInfo = agent.match(/(Windows NT|Windows|Linux|Mac OS|iOS|Android) [\d.]+/)
           const locations = (browserInfo ? browserInfo[0] : "Unknown Browser") + " " + (osInfo ? osInfo[0] : "Unknown OS")
           document.getElementById("userAgent").value = locations
-          $.LoadingOverlay("hide")
 		  $("#main1").show()
+          $.LoadingOverlay("hide")
 		}, true)
       </script>
     <!-- window.onload -->
@@ -541,4 +541,5 @@
     <!-- $(document).ready(() => {} / function page[number]() {} -->
 	</body>
 </html>
+
 
